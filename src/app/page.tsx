@@ -30,7 +30,7 @@ export default function Home() {
     setIsMounted(true);
   }, []);
 
- const handleKirim = () => {
+  const handleKirim = () => {
     // 1. EFEK AUDIO (Vibe Tegas)
     const audio = new Audio('/banteng.mp3');
     audio.volume = 0.6;
@@ -44,7 +44,6 @@ export default function Home() {
     }
 
     // 3. EFEK KONFETI PREMIUM (Vibe Merdeka)
-    // Kita bikin dua tembakan dari pojok kiri dan kanan bawah
     const count = 200;
     const defaults = {
       origin: { y: 0.7 },
@@ -68,7 +67,6 @@ export default function Home() {
 
     // 4. FEEDBACK & PENUTUPAN (Vibe Responsif)
     setTimeout(() => {
-      // Pake alert bawaan dulu, tapi kedepannya bisa kita ganti Modal Sukses yang keren
       alert("ASPIRASI DITERIMA! MERDEKA! ✊🚩");
       setIsOpen(false);
     }, 500);
@@ -112,7 +110,6 @@ export default function Home() {
     { name: "Agung Yudaswara", role: "Ketua DPC PDIP Cimahi", img: "/agung.jpg" },
     { name: "Pranjani Radja", role: "Sekertaris DPC PDIP Cimahi", img: "/pranjani.jfif" },
     { name: "Freddy Siagian", role: "Bendahara DPC PDIP Cimahi", img: "/freddy.jfif" },
-    
   ];
 
   return (
@@ -173,16 +170,20 @@ export default function Home() {
           <button onClick={() => setIsOpen(true)} className="bg-red-600 text-white px-6 py-2 rounded-full text-[10px] font-black hover:bg-white hover:text-red-600 transition-all uppercase tracking-widest">GABUNG</button>
         </nav>
 
-        {/* 3. HERO */}
-        <section id="hero" className="mb-20 pt-10 text-center scroll-mt-24">
-          <div className="bg-neutral-900/20 border border-white/5 rounded-[4rem] p-16 md:p-32 relative overflow-hidden backdrop-blur-sm shadow-2xl">
-            <h2 className="text-7xl md:text-[140px] font-black italic tracking-tighter mb-8 leading-none uppercase text-white">
-              SIKAT <span className="text-red-600 drop-shadow-[0_0_30px_rgba(220,38,38,0.6)]">HABIS</span>
+        {/* 3. HERO - FIXED RESPONSIVE */}
+        <section id="hero" className="mb-10 md:mb-20 pt-10 text-center scroll-mt-24 px-4">
+          <div className="bg-neutral-900/20 border border-white/5 rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-32 relative overflow-hidden backdrop-blur-sm shadow-2xl">
+            
+            <h2 className="text-5xl md:text-[140px] font-black italic tracking-tighter mb-6 md:mb-8 leading-[0.9] uppercase text-white">
+              SIKAT <br className="md:hidden" /> 
+              <span className="text-red-600 drop-shadow-[0_0_30px_rgba(220,38,38,0.6)]">HABIS</span>
             </h2>
-            <p className="text-gray-400 text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-medium leading-relaxed uppercase tracking-wide">
+
+            <p className="text-gray-400 text-sm md:text-2xl max-w-2xl mx-auto mb-10 md:mb-12 font-medium leading-relaxed uppercase tracking-wide">
               Bukan cuma wacana, saatnya anak muda turun tangan urus kota!
             </p>
-            <button onClick={() => setIsOpen(true)} className="bg-white text-black px-16 py-6 rounded-full font-black hover:bg-red-600 hover:text-white transition-all duration-500 shadow-xl uppercase text-sm tracking-[0.2em]">
+
+            <button onClick={() => setIsOpen(true)} className="bg-white text-black px-10 py-5 md:px-16 md:py-6 rounded-full font-black hover:bg-red-600 hover:text-white transition-all duration-500 shadow-xl uppercase text-xs md:text-sm tracking-[0.2em] w-full md:w-auto">
               SPILL KELUHAN LO ↓
             </button>
           </div>
@@ -242,15 +243,18 @@ export default function Home() {
               <h3 className="font-black text-4xl uppercase tracking-tighter leading-none text-white text-left">Aksi Nyata<br/>Bukan Drama</h3>
             </div>
           </div>
+          
           <div onClick={() => setIsOpen(true)} className="bg-red-600 rounded-[3rem] p-10 flex flex-col justify-between hover:scale-[1.02] active:scale-95 transition-all cursor-pointer shadow-[0_10px_40px_rgba(220,38,38,0.4)] text-left">
             <h3 className="font-black text-2xl uppercase italic text-left">Spill Masalah Lo Sekarang!</h3>
             <div className="text-[10px] font-black underline uppercase tracking-[0.3em] text-left">Isi Form Aspirasi →</div>
           </div>
+
           <div className="bg-neutral-900 border border-white/5 rounded-[3rem] p-8 flex flex-col justify-center items-center text-center shadow-lg shadow-black/50">
             <div className="text-5xl mb-2 font-sans">🚩</div>
             <div className="text-4xl font-black text-red-600 italic leading-none tracking-tighter">124</div>
             <div className="text-[10px] text-gray-500 uppercase font-black tracking-widest mt-2">Posko Aktif</div>
           </div>
+
           <div className="md:col-span-2 bg-neutral-800/50 border border-white/10 rounded-[3rem] p-10 flex flex-col justify-center relative overflow-hidden shadow-2xl text-left">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 bg-red-600 rounded-full animate-ping"></span>
@@ -260,7 +264,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 7. NEW SECTION: TESTIMONIALS */}
+        {/* 7. TESTIMONIALS */}
         <section className="mb-32 px-4">
           <h3 className="text-sm font-black uppercase tracking-[0.5em] text-red-600 mb-12 text-center">Apa Kata Mereka?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -317,30 +321,29 @@ export default function Home() {
         </section>
 
         {/* 10. THE SQUAD */}
-<section id="squad" className="mb-40 scroll-mt-24">
-  <h2 className="text-6xl md:text-9xl font-black italic tracking-tighter mb-12 uppercase text-center">THE <span className="text-red-600">SQUAD</span></h2>
-  
-  {/* UPDATE CLASS DI BAWAH INI: Tambahkan justify-center dan ganti grid-cols */}
-  <div className="flex flex-wrap justify-center gap-8"> 
-    {squad.map((person, index) => (
-      <div key={index} className="group relative bg-neutral-900 rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl transition-all cursor-pointer w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-2rem)] max-w-[350px]">
-        <div className="aspect-[3/4] relative overflow-hidden">
-          <Image 
-            src={person.img} 
-            alt={person.name}
-            fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-        <div className="absolute bottom-8 left-8 text-left">
-          <p className="text-red-600 font-black text-[10px] uppercase tracking-widest mb-2 font-sans text-left">{person.role}</p>
-          <h4 className="text-2xl font-black uppercase italic leading-none text-left">{person.name}</h4>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+        <section id="squad" className="mb-40 scroll-mt-24">
+          <h2 className="text-6xl md:text-9xl font-black italic tracking-tighter mb-12 uppercase text-center">THE <span className="text-red-600">SQUAD</span></h2>
+          
+          <div className="flex flex-wrap justify-center gap-8 px-4"> 
+            {squad.map((person, index) => (
+              <div key={index} className="group relative bg-neutral-900 rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl transition-all cursor-pointer w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-2rem)] max-w-[350px]">
+                <div className="aspect-[3/4] relative overflow-hidden">
+                  <Image 
+                    src={person.img} 
+                    alt={person.name}
+                    fill
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" 
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                <div className="absolute bottom-8 left-8 text-left">
+                  <p className="text-red-600 font-black text-[10px] uppercase tracking-widest mb-2 font-sans text-left">{person.role}</p>
+                  <h4 className="text-2xl font-black uppercase italic leading-none text-left">{person.name}</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* 11. INSTAGRAM LIVE FEED */}
         <section id="social" className="mb-32 max-w-7xl mx-auto px-4">
@@ -351,6 +354,7 @@ export default function Home() {
             </div>
             <a href="https://instagram.com/rikitosteven" target="_blank" rel="noopener noreferrer" className="bg-white text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all shadow-lg">Follow Instagram</a>
           </div>
+          
           <div className="bg-neutral-900/30 border border-white/5 p-4 md:p-6 rounded-[3.5rem] backdrop-blur-sm shadow-2xl relative overflow-hidden group">
             <div className="rounded-[2.5rem] overflow-hidden min-h-[400px]">
               <BeholdWidget />
@@ -359,7 +363,7 @@ export default function Home() {
         </section>
 
         {/* 12. FOOTER */}
-        <footer className="py-20 border-t border-white/5 text-center">
+        <footer className="py-20 border-t border-white/5 text-center px-4">
           <div className="text-red-600 text-5xl font-black italic mb-10 tracking-tighter">MERDEKA!</div>
           <div className="flex justify-center gap-8 mb-10 text-[10px] font-black uppercase tracking-widest text-gray-500">
              <a href="https://www.instagram.com/pdipkotacimahi/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
@@ -375,7 +379,9 @@ export default function Home() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/98 backdrop-blur-2xl" onClick={() => setIsOpen(false)}></div>
           <div className="bg-neutral-900 border border-red-600/30 p-10 md:p-12 rounded-[4rem] w-full max-w-xl z-10 shadow-2xl shadow-red-900/20 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            
             <h3 className="text-4xl font-black italic mb-8 uppercase text-center text-white">SUARA <span className="text-red-600">RAKYAT</span></h3>
+            
             <form className="space-y-5">
               <input type="text" placeholder="NAMA LENGKAP" className="w-full bg-black border border-white/10 p-5 rounded-2xl focus:border-red-600 outline-none font-bold text-white text-left transition-all" />
               

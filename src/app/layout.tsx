@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next"; // Tambahin Viewport di sini
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,9 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// INI KUNCI BIAR DI HP CAKEP
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
-  // BARIS INI YANG BIKIN TERMINAL BERSIH DARI WARNING KUNING
-  metadataBase: new URL('http://localhost:3000'), 
+  metadataBase: new URL('https://pdip-cimahi-2026.vercel.app'), // Ganti localhost ke link vercel lo nanti
   title: 'PDIP CIMAHI | SIKAT HABIS!',
   description: 'Waktunya anak muda turun tangan. Spill aspirasi lo untuk Cimahi Reborn 2026.',
   openGraph: {
@@ -33,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
         {children}
       </body>
