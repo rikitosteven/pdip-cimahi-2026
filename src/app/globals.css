@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  /* Paksa ke mode gelap sebagai default karena vibe PDI-P Cimahi ini "Dark & Bold" */
+  --background: #050505;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Biar running text miring gak bikin scroll horizontal bocor */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- ANIMASI GLOW BACKGROUND --- */
+@keyframes move-slow {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 60px) scale(1.1); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-glow {
+  animation: move-slow 15s infinite alternate ease-in-out;
+}
+
+/* --- ANIMASI SHAKE (EFEK BANTENG NYERUDUK) --- */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-2px, -3px) rotate(-1.5deg); }
+  20% { transform: translate(-4px, 0px) rotate(1.5deg); }
+  30% { transform: translate(4px, 3px) rotate(0deg); }
+  40% { transform: translate(2px, -2px) rotate(1.5deg); }
+  50% { transform: translate(-2px, 3px) rotate(-1.5deg); }
+  60% { transform: translate(-4px, 1px) rotate(0deg); }
+  70% { transform: translate(4px, 2px) rotate(-1.5deg); }
+  80% { transform: translate(-2px, -2px) rotate(1.5deg); }
+  90% { transform: translate(2px, 3px) rotate(0deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* --- RUNNING TEXT MARQUEE --- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-container:hover {
+  animation-play-state: paused;
+}
