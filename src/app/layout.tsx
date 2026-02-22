@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import PageFade from "@/components/ui/PageFade";
+import Footer from "@/components/layout/Footer";
 import Script from "next/script";
 
 const inter = Inter({
@@ -50,18 +51,21 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        
-  className={`${inter.variable} font-sans antialiased 
-  bg-white text-neutral-900 
-  dark:bg-neutral-950 dark:text-neutral-100 
-  transition-colors duration-500`}
->
+        className={`${inter.variable} font-sans antialiased 
+        bg-white text-neutral-900 
+        dark:bg-neutral-950 dark:text-neutral-100 
+        transition-colors duration-500`}
+      >
         <ThemeProvider>
           <ScrollProgress />
           <Navbar />
+
           <PageFade>
             <div className="pt-24">{children}</div>
           </PageFade>
+
+          {/* FOOTER SEKARANG RESMI MASUK */}
+          <Footer />
         </ThemeProvider>
 
         {/* Structured Data */}

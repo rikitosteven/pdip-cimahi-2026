@@ -7,6 +7,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden text-white">
 
+      {/* Background Image */}
       <Image
         src="/hero/hero.webp"
         alt="Kegiatan masyarakat Cimahi"
@@ -15,8 +16,10 @@ export default function Hero() {
         className="object-cover"
       />
 
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      {/* Dark Overlay (lebih dramatis, tanpa blur berlebihan) */}
+      <div className="absolute inset-0 bg-black/65" />
 
+      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -36,6 +39,7 @@ export default function Hero() {
           Transparan, terbuka, dan berpihak pada rakyat.
         </p>
 
+        {/* CTA Buttons */}
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#program"
@@ -45,13 +49,28 @@ export default function Hero() {
           </a>
 
           <a
-            href="#aspirasi"
+            href="#galeri"
             className="px-8 py-3 rounded-full border border-white hover:bg-white hover:text-black transition"
           >
-            Sampaikan Aspirasi
+            Lihat Kegiatan
           </a>
         </div>
+
+        {/* Trust Signal */}
+        <p className="mt-8 text-sm text-neutral-300">
+          17 kegiatan sosial · 280 relawan · 6 kelurahan aktif
+        </p>
       </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-300 text-sm"
+      >
+        ↓ Scroll
+      </motion.div>
+
     </section>
   );
 }
