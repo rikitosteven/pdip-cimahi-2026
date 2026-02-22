@@ -2,18 +2,21 @@
 
 export default function JoinMovement() {
   return (
-    <section className="py-40 bg-[#E10600] text-white text-center px-6">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-semibold mb-8">
-          Saatnya Bergerak.
+    <section id="join" className="section bg-[var(--primary-red)] text-white text-center px-6">
+      <div className="container-custom max-w-3xl mx-auto">
+
+        <h2 className="text-5xl font-bold mb-8">
+          Perubahan Dimulai
+          <br />
+          Dari Kita.
         </h2>
 
         <p className="mb-12 text-lg opacity-90">
-          Perubahan tidak datang dari diam.  
-          Bergabunglah bersama gerakan progresif untuk Cimahi yang lebih baik.
+          Jangan hanya menjadi penonton.
+          Jadilah bagian dari gerakan untuk masa depan Cimahi.
         </p>
 
-        <button className="bg-white text-[#E10600] px-10 py-4 rounded-full font-medium hover:scale-105 transition">
+        <button className="px-10 py-4 rounded-full bg-white text-[var(--primary-red)] font-semibold hover:scale-105 transition">
           Bergabung Sekarang
         </button>
       </div>

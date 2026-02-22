@@ -1,27 +1,41 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { fadeUp } from "@/lib/animations";
 
 export default function Tentang() {
   return (
-    <section id="tentang" className="py-40 md:py-56 px-6 bg-[#F5F5F7]">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight">
-            Tentang
+    <section id="tentang" className="section px-6 bg-neutral-50 dark:bg-neutral-900">
+      <div className="container-custom grid md:grid-cols-2 gap-16 items-center">
+
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-6xl font-bold leading-tight">
+            Dari Warga,
             <br />
-            <span className="text-[#E10600]">PDIP Cimahi</span>
+            <span className="text-[var(--primary-red)]">
+              Untuk Warga.
+            </span>
           </h2>
         </motion.div>
 
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-neutral-600 space-y-6 text-lg">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-lg text-neutral-600 dark:text-neutral-300 space-y-6"
+        >
           <p>
-            PDIP Kota Cimahi hadir sebagai kekuatan politik rakyat
-            dengan komitmen membangun kota yang inklusif dan transparan.
+            Kami percaya perubahan tidak lahir dari ruang tertutup,
+            tetapi dari dialog terbuka dan partisipasi masyarakat.
           </p>
           <p>
-            Melalui struktur organisasi yang solid dan fraksi di DPRD,
-            kami mendorong kebijakan yang berdampak nyata bagi masyarakat.
+            Setiap program, kebijakan, dan keputusan harus berdampak nyata
+            bagi kehidupan warga Cimahi.
           </p>
         </motion.div>
       </div>

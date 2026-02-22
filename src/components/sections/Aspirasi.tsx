@@ -45,7 +45,7 @@ export default function Aspirasi() {
   return (
     <section
       id="aspirasi"
-      className="py-40 px-6 bg-[#F5F5F7] dark:bg-neutral-900"
+      className="section px-6 bg-[#F5F5F7] dark:bg-neutral-900"
     >
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-semibold mb-8">

@@ -2,7 +2,7 @@
 
 export default function Donasi() {
   return (
-    <section id="donasi" className="py-40 md:py-56 px-6 bg-[#111] text-white text-center">
+    <section id="donasi" className="section px-6 bg-[#111] text-white text-center">
       <div className="max-w-4xl mx-auto space-y-8">
         <h2 className="text-4xl md:text-6xl font-semibold">
           Dukung Perjuangan

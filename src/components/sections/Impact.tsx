@@ -20,31 +20,31 @@ function Counter({ value }: { value: number }) {
 }
 
 export default function Impact() {
-  return (
-    <section id="impact" className="py-40 px-6 bg-[#F5F5F7]">
-      <div className="max-w-6xl mx-auto text-center">
-        <p className="uppercase text-xs tracking-widest text-neutral-400 mb-6">
-          Transparansi & Dampak
-        </p>
+  const stats = [
+    { value: 17, label: "Kegiatan Sosial 2024" },
+    { value: 6, label: "Kelurahan Aktif" },
+    { value: 280, label: "Relawan Terlibat" },
+    { value: 132, label: "Aspirasi Masuk" },
+  ];
 
-        <h2 className="text-4xl md:text-6xl font-semibold mb-20">
-          Dampak Nyata.
+  return (
+    <section id="impact" className="section px-6 bg-neutral-50 dark:bg-neutral-900">
+      <div className="container-custom text-center">
+
+        <h2 className="text-4xl md:text-6xl font-bold mb-20">
+          Dampak Nyata di Lapangan
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
-          {[
-            { value: 124, label: "Program Sosial" },
-            { value: 5, label: "Inisiatif Digital" },
-            { value: 3000, label: "Relawan Aktif" },
-          ].map((item, i) => (
+        <div className="grid md:grid-cols-4 gap-8">
+          {stats.map((item) => (
             <div
-              key={i}
-              className="bg-white border border-neutral-200 p-10 rounded-2xl hover:shadow-lg hover:-translate-y-1 transition duration-300"
+              key={item.label}
+              className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 p-10 rounded-2xl shadow-sm"
             >
-              <h3 className="text-5xl font-bold text-[#E10600]">
+              <h3 className="text-5xl font-bold text-[var(--primary-red)]">
                 <Counter value={item.value} />+
               </h3>
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 dark:text-neutral-400">
                 {item.label}
               </p>
             </div>
