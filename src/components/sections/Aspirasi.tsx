@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
 
 export default function Aspirasi() {
   const [nama, setNama] = useState("");
@@ -14,24 +13,40 @@ export default function Aspirasi() {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = await supabase.from("aspirasi").insert([
-      { nama, email, pesan },
-    ]);
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxDVOP8AWkNJZcpAypP7s9o_ViZ9BbtsEw6g6VI9jhQNf1smwJ7xOLOG7Edh2MLWZIF/exec",
+        {
+          method: "POST",
+          mode: "no-cors", // 🔥 WAJIB untuk Google Script
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nama,
+            email,
+            pesan,
+          }),
+        }
+      );
 
-    setLoading(false);
-
-    if (!error) {
+      // karena no-cors, kita tidak bisa baca response
       setSuccess(true);
       setNama("");
       setEmail("");
       setPesan("");
-    } else {
+    } catch (error) {
       alert("Terjadi kesalahan. Coba lagi.");
     }
+
+    setLoading(false);
   };
 
   return (
-    <section id="aspirasi" className="py-40 px-6 bg-[#F5F5F7] dark:bg-neutral-900">
+    <section
+      id="aspirasi"
+      className="py-40 px-6 bg-[#F5F5F7] dark:bg-neutral-900"
+    >
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-semibold mb-8">
           Sampaikan Aspirasi.
@@ -41,10 +56,7 @@ export default function Aspirasi() {
           Suara Anda adalah bagian dari perubahan.
         </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6 text-left"
-        >
+        <form onSubmit={handleSubmit} className="space-y-6 text-left">
           <input
             type="text"
             placeholder="Nama"
@@ -73,7 +85,7 @@ export default function Aspirasi() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#E10600] text-white py-4 rounded-xl font-medium hover:opacity-90 transition"
+            className="w-full bg-[#E10600] text-white py-4 rounded-xl font-medium hover:opacity-90 transition disabled:opacity-60"
           >
             {loading ? "Mengirim..." : "Kirim Aspirasi"}
           </button>

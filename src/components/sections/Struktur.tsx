@@ -6,21 +6,21 @@ import { motion } from "framer-motion";
 const strukturDPC = [
   {
     nama: "Agung Yudaswara",
-    jabatan: "Ketua DPC",
+    jabatan: "Ketua Dewan Perwakilan Cabang Cimahi",
     foto: "/struktur/agung.jpg",
     deskripsi:
       "Memimpin arah gerakan progresif PDIP Cimahi dengan fokus pada transparansi dan keberpihakan pada rakyat.",
   },
   {
     nama: "Pranjani Radja",
-    jabatan: "Sekretaris DPC",
+    jabatan: "Sekretaris Dewan Perwakilan Cabang Cimahi",
     foto: "/struktur/pranjani.png",
     deskripsi:
       "Mengkoordinasikan organisasi dan memastikan tata kelola partai berjalan efektif dan profesional.",
   },
   {
     nama: "Freddy Siagian",
-    jabatan: "Bendahara DPC",
+    jabatan: "Bendahara Dewan Perwakilan Cabang Cimahi",
     foto: "/struktur/freddy.png",
     deskripsi:
       "Mengelola keuangan secara akuntabel untuk mendukung seluruh program perjuangan.",
@@ -39,7 +39,7 @@ export default function Struktur() {
         </p>
 
         <h2 className="text-4xl md:text-6xl font-semibold mb-20">
-          Struktur DPC.
+          Struktur Dewan Perwakilan Cabang Cimahi
         </h2>
 
         <div className="grid md:grid-cols-3 gap-12">
