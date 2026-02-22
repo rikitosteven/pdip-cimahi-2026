@@ -3,9 +3,10 @@ import Tentang from "@/components/sections/Tentang";
 import VisiMisi from "@/components/sections/VisiMisi";
 import Struktur from "@/components/sections/Struktur";
 import Fraksi from "@/components/sections/Fraksi";
+import Aktivitas from "@/components/sections/Aktivitas";
 import Program from "@/components/sections/Program";
-import Agenda from "@/components/sections/Agenda";
-import Galeri from "@/components/sections/Galeri";
+
+
 import SuaraWarga from "@/components/sections/SuaraWarga";
 import Berita from "@/components/sections/Berita";
 import Impact from "@/components/sections/Impact";
@@ -21,9 +22,9 @@ export default function Home() {
   <Tentang />
   <VisiMisi />
   <Impact />
+  <Aktivitas />
   <Program />
-  <Agenda />
-  <Galeri />
+  
   <SuaraWarga />
   <Berita />
   <Struktur />
