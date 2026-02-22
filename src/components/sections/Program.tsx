@@ -1,59 +1,59 @@
 "use client";
 
-export default function Program() {
-  const programs = [
-    {
-      title: "Ekonomi Kerakyatan",
-      points: [
-        "Pendampingan UMKM lokal",
-        "Akses digital marketing",
-        "Legalitas & perizinan usaha",
-      ],
-    },
-    {
-      title: "Transparansi Publik",
-      points: [
-        "Laporan triwulan terbuka",
-        "Forum diskusi warga",
-        "Kanal aspirasi online",
-      ],
-    },
-    {
-      title: "Generasi Muda Berdaya",
-      points: [
-        "Ruang partisipasi pemuda",
-        "Pelatihan kepemimpinan",
-        "Kolaborasi komunitas kreatif",
-      ],
-    },
-  ];
+import Image from "next/image";
+import { motion } from "framer-motion";
 
+const programs = [
+  {
+    title: "Ekonomi Kerakyatan",
+    desc: "Pendampingan UMKM dan pelaku usaha lokal untuk naik kelas.",
+    image: "/kegiatan/kegiatan2.jpg",
+  },
+  {
+    title: "Transparansi Publik",
+    desc: "Laporan kegiatan dan anggaran yang terbuka untuk masyarakat.",
+    image: "/kegiatan/kegiatan3.jpg",
+  },
+];
+
+export default function Program() {
   return (
-    <section id="program" className="section px-6 bg-neutral-50 dark:bg-neutral-900">
+    <section id="program" className="section px-6 bg-white dark:bg-neutral-950">
       <div className="container-custom">
 
         <h2 className="text-4xl md:text-6xl font-bold text-center mb-20">
-          Program Prioritas
+          Program Pergerakan
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 gap-12">
           {programs.map((item) => (
-            <div
+            <motion.div
               key={item.title}
-              className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 p-8 rounded-3xl shadow-sm"
+              whileHover={{ y: -6 }}
+              className="rounded-3xl overflow-hidden shadow-lg border border-neutral-200 dark:border-neutral-800"
             >
-              <h4 className="text-xl font-semibold text-[var(--primary-red)] mb-6">
-                {item.title}
-              </h4>
+              <div className="relative h-64 w-full">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-              <ul className="space-y-3 text-neutral-600 dark:text-neutral-400 text-sm">
-                {item.points.map((point) => (
-                  <li key={point}>• {point}</li>
-                ))}
-              </ul>
-            </div>
+              <div className="p-8">
+                <h3 className="text-xl font-semibold mb-4 text-[var(--primary-red)]">
+                  {item.title}
+                </h3>
+
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
