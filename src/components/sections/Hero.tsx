@@ -1,38 +1,42 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Hero() {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 400], [0, 120]);
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
       
-      {/* Ambient Civic Glow */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-800 h-800 bg-[#E10600]/20 blur-[150px] rounded-full animate-pulse" />
-      </div>
+      {/* Background Image */}
+      <Image
+        src="/hero/hero.webp"
+        alt="PDIP Cimahi"
+        fill
+        priority
+        className="object-cover"
+      />
 
-      <motion.div style={{ y }} className="max-w-4xl">
-        <p className="uppercase text-xs tracking-widest text-neutral-400 mb-6">
-          Civic Movement Platform
-        </p>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-        <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight">
-          <span className="relative inline-block">
-            PDIP Kota Cimahi.
-            <span className="absolute inset-0 blur-2xl opacity-30 bg-[#E10600] -z-10" />
-          </span>
+      {/* Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 text-white px-6"
+      >
+        <h1 className="text-5xl md:text-7xl font-semibold leading-tight">
+          Bergerak untuk
           <br />
           <span className="text-[#E10600]">
-            Bergerak untuk Masa Depan.
+            Cimahi Lebih Maju.
           </span>
         </h1>
 
-        <p className="mt-10 text-lg text-neutral-600 max-w-2xl mx-auto">
-          Transparansi. Partisipasi. Progres.  
-          Politik modern untuk generasi baru.
+        <p className="mt-8 max-w-xl mx-auto text-lg text-neutral-200">
+          Gerakan progresif berbasis transparansi, partisipasi,
+          dan keberpihakan pada rakyat.
         </p>
       </motion.div>
     </section>

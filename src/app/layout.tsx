@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import PageFade from "@/components/ui/PageFade";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pdip-cimahi-modern.vercel.app"), // ganti dengan domain asli nanti
+  metadataBase: new URL("https://pdip-cimahi-2026.vercel.app"),
 
   title: "PDIP Kota Cimahi",
   description: "Platform progresif dan transparan PDIP Kota Cimahi.",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PDIP Kota Cimahi",
     description: "Gerakan progresif untuk masa depan Cimahi.",
-    url: "https://pdip-cimahi-modern.vercel.app",
+    url: "https://pdip-cimahi-2026.vercel.app",
     siteName: "PDIP Kota Cimahi",
     images: [
       {
@@ -41,7 +42,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: {
@@ -59,6 +59,22 @@ export default function RootLayout({
             <div className="pt-24">{children}</div>
           </PageFade>
         </ThemeProvider>
+
+        {/* Structured Data */}
+        <Script
+          id="ld-json"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "PDIP Kota Cimahi",
+              url: "https://pdip-cimahi-2026.vercel.app",
+              logo: "https://pdip-cimahi-2026.vercel.app/logo.png",
+            }),
+          }}
+        />
       </body>
     </html>
   );
