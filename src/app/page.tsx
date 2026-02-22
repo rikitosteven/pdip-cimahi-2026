@@ -5,6 +5,7 @@ import Struktur from "@/components/sections/Struktur";
 import Program from "@/components/sections/Program";
 import Agenda from "@/components/sections/Agenda";
 import Impact from "@/components/sections/Impact";
+import JoinMovement from "@/components/sections/JoinMovement";
 import Donasi from "@/components/sections/Donasi";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Program />
       <Agenda />
       <Impact />
+      <JoinMovement />
       <Donasi />
     </>
   );
