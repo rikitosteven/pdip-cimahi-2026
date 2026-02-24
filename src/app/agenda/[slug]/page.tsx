@@ -4,6 +4,7 @@ import { client, urlFor } from "@/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import ShareButton from "@/components/ShareButton";
 
+export const revalidate = 60;
 export default async function DetailAgenda({
   params,
 }: {

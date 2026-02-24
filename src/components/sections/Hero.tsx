@@ -1,5 +1,6 @@
 import Image from "next/image"; import { client, urlFor } from "@/lib/sanity";
 
+export const revalidate = 60;
 async function getHero() {
   return await client.fetch(`*[_type == "hero"][0]{
     headline,

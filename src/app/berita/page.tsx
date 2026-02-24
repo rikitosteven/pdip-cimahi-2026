@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "@/lib/sanity";
 
+export const revalidate = 60;
 export default async function ListBerita() {
   const berita = await client.fetch(`
     *[_type == "berita"] | order(_createdAt desc) {

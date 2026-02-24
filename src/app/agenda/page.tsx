@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { client, urlFor } from "@/lib/sanity";
 
+export const revalidate = 60;
 export default async function ListAgenda() {
   const agenda = await client.fetch(`
     *[_type == "agenda"] | order(date desc) {

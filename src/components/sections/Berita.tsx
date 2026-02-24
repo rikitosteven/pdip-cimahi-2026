@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "@/lib/sanity";
 
+export const revalidate = 60;
 async function getLatestBerita() {
   return await client.fetch(`
     *[_type == "berita"] 
