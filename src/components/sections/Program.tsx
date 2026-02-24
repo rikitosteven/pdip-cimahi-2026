@@ -68,7 +68,7 @@ export default function Program() {
 
               {/* Content */}
               <div className="p-8">
-                <h3 className="text-xl font-semibold mb-4 text-[var(--primary-red)]">
+                <h3 className="text-xl font-semibold mb-4 text-(--primary-red)">
                   {item.title}
                 </h3>
 

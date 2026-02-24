@@ -1,20 +1,22 @@
-"use client";
+import Link from "next/link";
+import { client } from "@/lib/sanity";
 
-export default function Berita() {
-  const updates = [
-    {
-      date: "12 Januari 2025",
-      title: "Dialog Publik di Kelurahan Cibeureum",
-    },
-    {
-      date: "3 Februari 2025",
-      title: "Pelatihan UMKM dan Digital Marketing",
-    },
-    {
-      date: "18 Maret 2025",
-      title: "Bakti Sosial & Pemeriksaan Kesehatan Gratis",
-    },
-  ];
+async function getLatestBerita() {
+  return await client.fetch(`
+    *[_type == "berita"] 
+    | order(publishedAt desc)[0...3] {
+      _id,
+      title,
+      slug,
+      publishedAt
+    }
+  `);
+}
+
+export default async function Berita() {
+  const updates = await getLatestBerita();
+
+  if (!updates || updates.length === 0) return null;
 
   return (
     <section id="berita" className="section px-6">
@@ -25,20 +27,36 @@ export default function Berita() {
         </h2>
 
         <div className="space-y-10 max-w-3xl mx-auto">
-          {updates.map((item) => (
+          {updates.map((item: any) => (
             <div
-              key={item.title}
+              key={item._id}
               className="border-b border-neutral-200 dark:border-neutral-700 pb-6"
             >
               <p className="text-sm text-neutral-500 mb-2">
-                {item.date}
+                {item.publishedAt
+                  ? new Date(item.publishedAt).toLocaleDateString("id-ID")
+                  : ""}
               </p>
-              <h3 className="text-xl font-semibold">
+
+              <Link
+                href={`/berita/${item.slug.current}`}
+                className="text-xl font-semibold hover:text-(--primary-red) transition"
+              >
                 {item.title}
-              </h3>
+              </Link>
             </div>
           ))}
         </div>
+
+        <div className="text-center mt-14">
+          <Link
+            href="/berita"
+            className="px-8 py-3 rounded-full border border-(--primary-red) text-(--primary-red) hover:bg-(--primary-red) hover:text-white transition"
+          >
+            Lihat Semua Berita
+          </Link>
+        </div>
+
       </div>
     </section>
   );

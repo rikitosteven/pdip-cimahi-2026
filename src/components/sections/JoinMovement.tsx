@@ -13,7 +13,7 @@ export default function JoinMovement() {
         className="object-cover"
       />
 
-      <div className="absolute inset-0 bg-[var(--primary-red)]/80" />
+      <div className="absolute inset-0 bg-(--primary-red)/80" />
 
       <div className="container-custom relative z-10 max-w-3xl mx-auto">
 
@@ -26,7 +26,7 @@ export default function JoinMovement() {
           untuk masa depan Cimahi yang lebih baik.
         </p>
 
-        <button className="px-10 py-4 rounded-full bg-white text-[var(--primary-red)] font-semibold hover:scale-105 transition">
+        <button className="px-10 py-4 rounded-full bg-white text-(--primary-red) font-semibold hover:scale-105 transition">
           Bergabung Sekarang
         </button>
       </div>

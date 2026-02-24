@@ -64,7 +64,7 @@ export default function Impact() {
               whileHover={{ y: -6 }}
               className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 p-10 rounded-3xl shadow-md transition"
             >
-              <h3 className="text-4xl md:text-5xl font-extrabold text-[var(--primary-red)]">
+              <h3 className="text-4xl md:text-5xl font-extrabold text-(--primary-red)">
                 <Counter value={item.value} />+
               </h3>
 

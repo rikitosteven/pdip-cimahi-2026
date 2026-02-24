@@ -1,89 +1,129 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { client, urlFor } from "@/lib/sanity";
 
-export default function Agenda() {
-  const events = [
-    {
-      title: "Dialog Publik Warga Cibeureum",
-      date: "12 Januari 2025",
-      location: "Kelurahan Cibeureum",
-      status: "Selesai",
-      image: "/kegiatan/kegiatan4.jpg",
-    },
-    {
-      title: "Pelatihan UMKM & Digital Marketing",
-      date: "3 Februari 2025",
-      location: "Aula Kecamatan Cimahi Tengah",
-      status: "Selesai",
-      image: "/kegiatan/kegiatan5.jpg",
-    },
-    {
-      title: "Bakti Sosial & Pemeriksaan Kesehatan Gratis",
-      date: "18 Maret 2025",
-      location: "Kelurahan Melong",
-      status: "Mendatang",
-      image: "/kegiatan/kegiatan6.jpg",
-    },
-  ];
+async function getAgenda() {
+  return await client.fetch(`
+    *[_type == "agenda"] | order(date desc) {
+      _id,
+      title,
+      date,
+      location,
+      image,
+      slug
+    }
+  `);
+}
+
+export default async function Agenda() {
+  const events = await getAgenda();
+  const today = new Date();
+
+  if (!events || events.length === 0) return null;
+
+  const upcoming = events.filter(
+    (e: any) => new Date(e.date) >= today
+  );
+
+  const spotlight =
+    upcoming.length > 0
+      ? upcoming.sort(
+          (a: any, b: any) =>
+            new Date(a.date).getTime() -
+            new Date(b.date).getTime()
+        )[0]
+      : events[0];
+
+  const others = events.filter(
+    (e: any) => e._id !== spotlight._id
+  );
 
   return (
-    <section
-      id="agenda"
-      className="section px-6 relative overflow-hidden bg-white dark:bg-neutral-950"
-    >
-      {/* Subtle Red Glow Background */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,rgba(225,6,0,0.08),transparent_60%)]" />
+    <section className="relative px-6 py-28 bg-black text-white overflow-hidden">
 
-      <div className="container-custom relative z-10">
+      {/* Ambient Red Burst */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-red-600/15 blur-[140px] pointer-events-none" />
 
-        <h2 className="text-4xl md:text-6xl font-bold text-center mb-20">
-          Agenda & Kegiatan
-        </h2>
+      <div className="relative max-w-6xl mx-auto">
 
-        <div className="grid md:grid-cols-3 gap-10">
-          {events.map((event) => (
-            <motion.div
-              key={event.title}
-              whileHover={{ y: -6 }}
-              className="bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden shadow-md border border-neutral-200 dark:border-neutral-800 transition"
-            >
-              {/* Thumbnail */}
-              <div className="relative h-48 w-full">
+        {/* HEADER */}
+        <div className="mb-24">
+          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight">
+            Agenda
+            <span className="text-red-600">.</span>
+          </h2>
+
+          <p className="text-neutral-400 mt-6 max-w-xl text-lg">
+            Aktivitas nyata. Gerak langsung. Tanpa menunggu.
+          </p>
+        </div>
+
+        {/* SPOTLIGHT */}
+        <Link href={`/agenda/${spotlight.slug?.current || "#"}`}>
+          <div className="group grid md:grid-cols-2 gap-12 items-center mb-24">
+
+            {/* IMAGE */}
+            {spotlight.image && (
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
                 <Image
-                  src={event.image}
-                  alt={event.title}
+                  src={urlFor(spotlight.image).width(1200).url()}
+                  alt={spotlight.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition duration-700 group-hover:scale-105"
                 />
               </div>
+            )}
 
-              <div className="p-8">
-                {/* Status Badge */}
-                <span
-                  className={`inline-block px-3 py-1 text-xs font-semibold rounded-full mb-4 ${
-                    event.status === "Mendatang"
-                      ? "bg-green-100 text-green-600"
-                      : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300"
-                  }`}
-                >
-                  {event.status}
-                </span>
+            {/* TEXT */}
+            <div>
 
-                <h4 className="text-lg font-semibold mb-2">
-                  {event.title}
-                </h4>
-
-                <p className="text-sm text-neutral-500">
-                  {event.date}
-                </p>
-
-                <p className="text-sm text-neutral-400 mt-1">
-                  {event.location}
-                </p>
+              <div className="text-red-600 text-sm font-semibold uppercase tracking-wider mb-4">
+                {new Date(spotlight.date) >= today
+                  ? "Agenda Terdekat"
+                  : "Agenda Terakhir"}
               </div>
-            </motion.div>
+
+              <h3 className="text-3xl md:text-5xl font-bold leading-tight group-hover:text-red-600 transition">
+                {spotlight.title}
+              </h3>
+
+              <div className="mt-6 text-neutral-400 text-lg">
+                {new Date(spotlight.date).toLocaleDateString("id-ID")}  
+                <span className="mx-3">•</span>
+                {spotlight.location}
+              </div>
+
+            </div>
+          </div>
+        </Link>
+
+        {/* SECONDARY LIST */}
+        <div className="space-y-10">
+          {others.slice(0, 3).map((event: any) => (
+            <Link
+              key={event._id}
+              href={`/agenda/${event.slug?.current || "#"}`}
+            >
+              <div className="group flex justify-between items-center border-b border-white/10 pb-6 hover:border-red-600 transition">
+
+                <div>
+                  <h4 className="text-2xl font-semibold group-hover:text-red-600 transition">
+                    {event.title}
+                  </h4>
+
+                  <div className="text-neutral-500 mt-2">
+                    {new Date(event.date).toLocaleDateString("id-ID")}  
+                    <span className="mx-3">•</span>
+                    {event.location}
+                  </div>
+                </div>
+
+                <div className="text-neutral-600 text-sm group-hover:text-red-600 transition">
+                  →
+                </div>
+
+              </div>
+            </Link>
           ))}
         </div>
 

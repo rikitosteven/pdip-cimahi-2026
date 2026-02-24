@@ -51,21 +51,24 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased 
-        bg-white text-neutral-900 
-        dark:bg-neutral-950 dark:text-neutral-100 
+        className={`${inter.variable} font-sans antialiased relative
+        bg-white text-neutral-900
+        dark:bg-neutral-950 dark:text-neutral-100
         transition-colors duration-500`}
       >
         <ThemeProvider>
-          <ScrollProgress />
-          <Navbar />
+          {/* Wrapper penting supaya scroll offset stabil */}
+          <div className="relative min-h-screen flex flex-col">
+            
+            <ScrollProgress />
+            <Navbar />
 
-          <PageFade>
-            <div className="pt-24">{children}</div>
-          </PageFade>
+            <main className="pt-24 flex-1">
+              <PageFade>{children}</PageFade>
+            </main>
 
-          {/* FOOTER SEKARANG RESMI MASUK */}
-          <Footer />
+            <Footer />
+          </div>
         </ThemeProvider>
 
         {/* Structured Data */}

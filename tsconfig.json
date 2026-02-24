@@ -8,12 +8,12 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "baseUrl": ".",                // ← TAMBAHKAN INI
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -21,8 +21,7 @@
       {
         "name": "next"
       }
-    ],
-    
+    ]
   },
   "include": [
     "next-env.d.ts",

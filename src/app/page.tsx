@@ -4,6 +4,7 @@ import VisiMisi from "@/components/sections/VisiMisi";
 import Struktur from "@/components/sections/Struktur";
 import Fraksi from "@/components/sections/Fraksi";
 import Aktivitas from "@/components/sections/Aktivitas";
+import Agenda from "@/components/sections/Agenda";
 import Program from "@/components/sections/Program";
 
 
@@ -23,6 +24,7 @@ export default function Home() {
   <VisiMisi />
   <Impact />
   <Aktivitas />
+  <Agenda />
   <Program />
   
   <SuaraWarga />
